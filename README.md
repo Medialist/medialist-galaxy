@@ -60,5 +60,43 @@ You need to sort out the following
 After initial deploy:
 
 - Enable "professional" mode in the Galaxy app settings
-- Copy the external ip addresses from Galaxy to Mongo Atlas ip whitelist
+- Copy the external ip addresses from Galaxy to Mongo Atlas ip whitelist if not present
 - Scale the deployment to 2x 1GB containers
+- Enable SSL cert generation and force https
+
+## Template config file
+
+```yml
+authentication:
+  sendLink: True
+  teamDomain: cnc.com
+
+twitter:
+  consumer_key: changeme
+  consumer_secret: changeme
+  access_token_key: changeme
+  access_token_secret: changeme
+
+uploadcare:
+  public_key: changeme
+  private_key: changeme
+
+intercom:
+  appId: xeip3abm
+
+email:
+  user: cnc@mail.medialist.io
+  password: changeme
+
+mongo:
+  admin_username: "{{inventory_hostname_short}}-admin"
+  admin_password: "changeme"
+  oplog_username: "{{inventory_hostname_short}}-oplog"
+  oplog_password: "changeme"
+  db: "{{inventory_hostname_short}}"
+  host: "medialist-prod-shard-00-00-49ylh.mongodb.net:27017,medialist-prod-shard-00-01-49ylh.mongodb.net:27017,medialist-prod-shard-00-02-49ylh.mongodb.net:27017"
+  replica_set: "medialist-prod-shard-0"
+
+mongo_url: "mongodb://{{mongo.admin_username}}:{{mongo.admin_password}}@{{mongo.host}}/{{mongo.db}}?ssl=true&replicaSet={{mongo.replica_set}}&authSource=admin"
+mongo_oplog_url: "mongodb://{{mongo.oplog_username}}:{{mongo.oplog_password}}@{{mongo.host}}/local?ssl=true&replicaSet={{mongo.replica_set}}&authSource=admin"
+```
