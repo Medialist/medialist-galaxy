@@ -50,8 +50,15 @@ ansible-playbook -i production deploy.yml
 
 You need to sort out the following
 
-- Add DNS for subdomain https://cloud.digitalocean.com/networking/domains/medialist.io?i=d65447
-- Add admin and oplog user to db: https://cloud.mongodb.com/v2/593eec469701996e607da978#clusters/security/users
+- Add CNAME for subdomain https://cloud.digitalocean.com/networking/domains/medialist.io?i=d65447
+```
+CNAME cnc.medialist.io eu-west-1.galaxy-ingress.meteor.com 3600
+```
+- Add admin and oplog user to db https://cloud.mongodb.com/v2/593eec469701996e607da978#clusters/security/users
+```
+cnc-admin readWrite @ cnc <generate password, make a note>
+cnc-oplog read @ local <generate password, make a note>
+```
 - Create Twitter app credentials
 - Create upload care bucket
 - Create mailgun log in
