@@ -67,6 +67,9 @@ cnc-oplog read @ local <generate password, make a note>
 After initial deploy:
 
 - Enable "professional" mode in the Galaxy app settings
+- Enable ip whitelisting
+- Generate SSL cert
+- Force https
 - Copy the external ip addresses from Galaxy to Mongo Atlas ip whitelist if not present
 - Scale the deployment to 2x 1GB containers
 - Enable SSL cert generation and force https
