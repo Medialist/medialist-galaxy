@@ -1,8 +1,8 @@
-- hosts: meteor-app
+- hosts: influence-app
   connection: local
   vars:
-    repo: Medialist/medialist-app2
-    build_dir: ./.build
+    repo: Medialist/influence
+    build_dir: ./.build-influence
     domain: "{{inventory_hostname}}"
     customer: "{{inventory_hostname_short}}"
     settings_file: "settings.{{customer}}.json"
@@ -24,7 +24,7 @@
         chdir: "{{build_dir}}/src"
 
     - name: Copy settings
-      local_action: template src=./settings.tpl.json dest={{build_dir}}/{{settings_file}} force=yes
+      local_action: template src=./influence-settings.tpl.json dest={{build_dir}}/{{settings_file}} force=yes
 
     - name: Deploy to galaxy
       shell: meteor deploy {{domain}} --settings ../{{settings_file}}
