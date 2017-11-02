@@ -18,6 +18,9 @@
     "userAgent": "'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'",
     "timeout": 10000
   },
+  "influence": {
+    "apiUrl": "https://influence.medialist.io"
+  },
   "public": {
     "build": {
       "commit": "{{gitresult.after}}"
@@ -36,12 +39,6 @@
       "supportDomains": ["medialist.io"]
     },
     "attachSchemasToDatabase": false
-  },
-  "twitter": {
-    "consumer_key": "{{twitter.consumer_key}}",
-    "consumer_secret": "{{twitter.consumer_secret}}",
-    "access_token_key": "{{twitter.access_token_key}}",
-    "access_token_secret": "{{twitter.access_token_secret}}"
   },
   "uploadcare": {
     "privateKey": "{{uploadcare.private_key}}"
