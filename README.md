@@ -18,7 +18,18 @@ This project assumes it'll be run on a developers machine and requires
 
 ## Usage
 
+##### Deploy influence
+
+```sh
+ansible-playbook influence-deploy.yml -i influence
 ```
+
+##### Deploy app
+
+```sh
+ansible-playbook -i next deploy.yml
+
+# or more generally
 ansible-playbook -i <env> deploy.yml [--limit "<host list>"]
 ```
 
