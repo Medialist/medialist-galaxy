@@ -8,6 +8,15 @@
     settings_file: "settings.{{customer}}.json"
 
   tasks:
+    - name: Check logged in to meteor
+      run_once: true
+      shell: meteor whoami
+      register: whoami
+
+    - name: Log deploy user
+      run_once: true
+      debug: msg="Deploying as {{ whoami.stdout }}"
+
     - name: Clone the repo
       run_once: true
       git: dest={{build_dir}}/src repo=ssh://git@github.com/{{repo}}.git version=HEAD depth=1 update=yes force=yes
@@ -20,6 +29,12 @@
     - name: Install our npm dependencies
       run_once: true
       command: meteor npm install
+      args:
+        chdir: "{{build_dir}}/src"
+
+    - name: Build out generated artefacts
+      run_once: true
+      command: meteor npm run build
       args:
         chdir: "{{build_dir}}/src"
 
